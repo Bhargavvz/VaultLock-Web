@@ -10,12 +10,6 @@
   --background-end-rgb: 15, 15, 20;
 }
 
-.light {
-  --foreground-rgb: 15, 15, 20;
-  --background-start-rgb: 247, 248, 250;
-  --background-end-rgb: 247, 248, 250;
-}
-
 @layer base {
   html {
     scroll-behavior: smooth;

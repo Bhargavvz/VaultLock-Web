@@ -80,9 +80,6 @@ export default function Security() {
         >
           <h3 className="text-xl font-semibold text-white text-center mb-10">How Your Data is Protected</h3>
           <div className="relative">
-            {/* Connection Line */}
-            <div className="hidden lg:block absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-primary via-secondary to-accent transform -translate-y-1/2" />
-            
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4 lg:gap-2">
               {encryptionSteps.map((step, index) => {
                 const Icon = step.icon
@@ -105,7 +102,7 @@ export default function Security() {
                       <div className="text-gray-500 text-xs">{step.description}</div>
                     </div>
                     {index < encryptionSteps.length - 1 && (
-                      <ArrowRight className="hidden lg:block absolute right-0 top-1/4 transform translate-x-1/2 w-4 h-4 text-gray-600" />
+                      <ArrowRight className="hidden lg:block absolute right-0 top-1/4 transform translate-x-1/2 w-4 h-4 text-primary" />
                     )}
                   </motion.div>
                 )

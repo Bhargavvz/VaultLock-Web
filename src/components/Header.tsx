@@ -2,8 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Menu, X, Shield, Sun, Moon, Github } from 'lucide-react'
-import { useTheme } from './ThemeProvider'
+import { Menu, X, Shield, Github } from 'lucide-react'
 import Link from 'next/link'
 
 const navLinks = [
@@ -18,7 +17,6 @@ const navLinks = [
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
-  const { theme, toggleTheme } = useTheme()
 
   useEffect(() => {
     const handleScroll = () => {
@@ -79,21 +77,6 @@ export default function Header() {
 
             {/* Actions */}
             <div className="flex items-center gap-3">
-              {/* Theme Toggle */}
-              <motion.button
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                onClick={toggleTheme}
-                className="p-2 rounded-lg bg-white/5 hover:bg-white/10 transition-colors"
-                aria-label="Toggle theme"
-              >
-                {theme === 'dark' ? (
-                  <Sun className="w-5 h-5 text-yellow-400" />
-                ) : (
-                  <Moon className="w-5 h-5 text-slate-700" />
-                )}
-              </motion.button>
-
               {/* GitHub Link */}
               <motion.a
                 whileHover={{ scale: 1.1 }}

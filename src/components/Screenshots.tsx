@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView, AnimatePresence } from 'framer-motion'
 import { ChevronLeft, ChevronRight, Smartphone } from 'lucide-react'
+import Image from 'next/image'
 
 const screenshots = [
   {
@@ -10,36 +11,42 @@ const screenshots = [
     title: 'Onboarding',
     description: 'Beautiful 3-page welcome flow',
     gradient: 'from-primary to-accent',
+    image: '/images/Onboarding.jpeg',
   },
   {
     id: 2,
     title: 'Main Vault',
     description: 'All your passwords at a glance',
     gradient: 'from-secondary to-primary',
+    image: '/images/MainVault.jpeg',
   },
   {
     id: 3,
     title: 'Password Details',
     description: 'View and edit your credentials',
     gradient: 'from-accent to-secondary',
+    image: '/images/PasswordDetails.jpeg',
   },
   {
     id: 4,
     title: 'Add Password',
     description: 'Create new entries with generator',
     gradient: 'from-primary to-secondary',
+    image: '/images/AddPassword.jpeg',
   },
   {
     id: 5,
     title: 'Security Audit',
     description: 'Find weak and reused passwords',
     gradient: 'from-danger to-warning',
+    image: '/images/SecurityAudit.jpeg',
   },
   {
     id: 6,
     title: 'Settings',
     description: 'Customize your experience',
     gradient: 'from-secondary to-accent',
+    image: '/images/Settings.jpeg',
   },
 ]
 
@@ -100,12 +107,12 @@ export default function Screenshots() {
               onClick={prevSlide}
               className="p-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/10 transition-colors"
             >
-              <ChevronLeft className="w-6 h-6 text-white" />
+              <ChevronLeft className="w-6 h-6 text-white dark:text-white" />
             </motion.button>
 
             {/* Phone Mockups */}
-            <div className="relative flex items-center justify-center" style={{ minHeight: '500px', width: '100%', maxWidth: '700px' }}>
-              <AnimatePresence mode="wait">
+            <div className="relative flex items-center justify-center" style={{ minHeight: '580px', width: '100%', maxWidth: '700px' }}>
+              <AnimatePresence mode="popLayout">
                 {[-1, 0, 1].map((offset) => {
                   const index = (activeIndex + offset + screenshots.length) % screenshots.length
                   const screenshot = screenshots[index]
@@ -126,19 +133,15 @@ export default function Screenshots() {
                       className={`absolute ${isCenter ? '' : 'hidden lg:block'}`}
                     >
                       <div className={`phone-mockup ${isCenter ? '' : 'opacity-50 blur-sm'}`}>
-                        <div className="screen">
-                          {/* Placeholder Screen Content */}
-                          <div className={`w-full h-full bg-gradient-to-br ${screenshot.gradient} opacity-20`} />
-                          <div className="absolute inset-0 flex flex-col items-center justify-center p-6">
-                            <div className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur mb-4 flex items-center justify-center">
-                              <Smartphone className="w-8 h-8 text-white" />
-                            </div>
-                            <div className="text-white font-semibold text-center">{screenshot.title}</div>
-                            <div className="text-white/60 text-sm text-center mt-1">{screenshot.description}</div>
-                            <div className="mt-4 px-4 py-2 rounded-full bg-white/10 text-white/80 text-xs">
-                              Screenshot Placeholder
-                            </div>
-                          </div>
+                        <div className="screen overflow-hidden">
+                          {/* Real Screenshot */}
+                          <Image
+                            src={screenshot.image}
+                            alt={screenshot.title}
+                            fill
+                            className="object-cover object-top"
+                            sizes="(max-width: 768px) 280px, 280px"
+                          />
                         </div>
                       </div>
                       
@@ -191,16 +194,6 @@ export default function Screenshots() {
             ))}
           </div>
         </div>
-
-        {/* Note about screenshots */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : {}}
-          transition={{ delay: 0.5 }}
-          className="text-center text-gray-500 text-sm mt-8"
-        >
-          * Screenshots are placeholders. Replace with actual app screenshots for production.
-        </motion.p>
       </div>
     </section>
   )

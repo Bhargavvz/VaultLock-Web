@@ -2,7 +2,8 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
-import { Download, Smartphone, Apple, Github, QrCode, HardDrive, Tag } from 'lucide-react'
+import { Download, Smartphone, Apple, Github, HardDrive, Tag } from 'lucide-react'
+import Image from 'next/image'
 
 export default function DownloadSection() {
   const ref = useRef(null)
@@ -61,7 +62,8 @@ export default function DownloadSection() {
             <div className="space-y-4">
               {/* APK Download */}
               <motion.a
-                href="[APK_DOWNLOAD_LINK]"
+                href="/apk/ValutLock.apk"
+                download="VaultLock.apk"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center justify-center lg:justify-start gap-4 p-4 rounded-2xl bg-gradient-to-r from-primary to-accent text-white shadow-glow hover:shadow-glow-lg transition-all"
@@ -135,16 +137,19 @@ export default function DownloadSection() {
             {/* QR Code Card */}
             <motion.div
               whileHover={{ scale: 1.02 }}
-              className="p-8 rounded-3xl bg-dark-card border border-white/10 text-center mb-8"
+              className="p-8 rounded-3xl bg-dark-card border border-white/10 text-center mb-8 shadow-lg"
             >
-              <div className="w-48 h-48 mx-auto bg-white rounded-2xl p-4 mb-4">
-                {/* QR Code Placeholder */}
-                <div className="w-full h-full bg-gray-100 rounded-lg flex items-center justify-center">
-                  <QrCode className="w-24 h-24 text-gray-400" />
-                </div>
+              <div className="w-48 h-48 mx-auto bg-white rounded-2xl overflow-hidden mb-4">
+                {/* Real QR Code */}
+                <Image
+                  src="/images/QR.png"
+                  alt="QR Code to download VaultLock"
+                  width={192}
+                  height={192}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <p className="text-gray-400 text-sm">Scan to download on your phone</p>
-              <p className="text-gray-500 text-xs mt-1">(QR code placeholder - update with actual link)</p>
             </motion.div>
 
             {/* Trust Badges */}
